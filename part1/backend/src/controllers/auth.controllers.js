@@ -1,4 +1,5 @@
 import { User } from "../models/user.model.js";
+import router from "../routes/auth.route.js";
 
 const registerUser = async(req, res)=>{
     try {
@@ -25,6 +26,4 @@ const registerUser = async(req, res)=>{
     }
 }
 
-export {
-    registerUser
-}
+export {registerUser}
