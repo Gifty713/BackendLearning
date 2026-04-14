@@ -26,4 +26,35 @@ const registerUser = async(req, res)=>{
     }
 }
 
-export {registerUser}
+const loginUser = async(req, res)=>{
+    try {
+        const{ password, email} = req.body
+
+        if (!password || !email){
+            return res.status(400).json({message:"fill all fields please"})
+        }
+
+        const user = await User.findOne({email: email.toLowerCase()})
+        if (!user){
+            return res.status(400).json({message:"User not registered, refer to register page."})
+        }  
+
+        // compare passwords
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch){
+            return res.status(400).json({message:"Invalid credentials"})
+        }
+
+        res.status(200).json({message:"Login Successful.", 
+            user:{
+                id: user._id,
+                email: user.email, 
+                username: user.username
+            } 
+        })
+    } catch (err) {
+        return res.status(500).json({message:"Internal Server Error", error:`Error:${err}`})
+    }
+
+}
+export {registerUser, loginUser}
