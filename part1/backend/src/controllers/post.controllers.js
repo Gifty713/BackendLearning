@@ -35,4 +35,18 @@ const getPosts = async(req, res)=>{
     
 
 }
+
+// update posts
+const updatePosts = async(req, res)=>{
+    try {
+        const {name, description, age} = req.body;
+
+        if (!name||!description||!age)return res.status(401).json({message: "Fill all fields"});
+
+        const user = await Post.findByIdAndUpdate({name, description, age});
+        res        
+    } catch (error) {
+        res.status(500).json({message:"Internal server error."})
+    }
+}
 export {createPost, getPosts}
