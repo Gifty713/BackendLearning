@@ -20,7 +20,7 @@ const SignupPage=()=>{
         try {
             const result = await fetch("http://localhost:4000/api/v1/users/register", {
                 method: "POST",
-                header: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json"},
                 body:JSON.stringify({username, email, password})
             });
             const data = await result.json();

@@ -32,8 +32,6 @@ const getPosts = async(req, res)=>{
     } catch (err) {
         res.status(501).json({message:"Internal Server Error!", error: err})
     }
-    
-
 }
 
 // update posts
