@@ -21,7 +21,7 @@ const CreatePost=({createe, setcreatee})=>{
     }
 
     return(
-        <div>
+        <div style={{marginBottom:"10px"}}>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">
                     <p>Name?</p>

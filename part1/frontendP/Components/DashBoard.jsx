@@ -10,7 +10,6 @@ const DashBoard=()=>{
                 const res = await fetch("http://localhost:4000/api/v1/posts/getpost");
                 const data = await res.json();
                 setPost(data);
-                console.log(data);
             } catch (error) {
                 console.log(error)
             }    
@@ -28,10 +27,10 @@ const DashBoard=()=>{
                 {
                     post.map(unit=>{
                         return(
-                            <div key={unit._id}>
-                                <p>Name:{unit.name}</p>
-                                <p>Age: {unit.age}</p>
-                                <p>Description:{unit.description}</p>
+                            <div key={unit._id} style={{border:"1px solid magenta", marginBottom:"10px", padding:"10px"}}>
+                                <p style={{margin:"0px 0px 0px 0px"}}>Name: {unit.name}</p>
+                                <p style={{margin:"5px 0px 0px 0px"}}>Age: {unit.age}</p>
+                                <p style={{margin:"5px 0px 0px 0px"}}>Description:{unit.description}</p>
                             </div>
                         )
                     })
