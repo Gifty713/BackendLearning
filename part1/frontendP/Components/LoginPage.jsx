@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios" 
 const LoginPage = ()=>{
     const [clicked, setClicked] = useState(null);
 
@@ -17,11 +16,16 @@ const LoginPage = ()=>{
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try {
-            const result = await axios.post("http://localhost:4000/api/v1/users/login", {email, password});
-            console.log(result.data.message); 
-            if(result.data.message === "Login Successful."){
+            const result = await fetch("http://localhost:4000/api/v1/users/login", {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({email, password})
+            });
+            const data = await result.json();
+            console.log(data.message)            
+            if(data.message === "Login Successful."){
                 navigate("/dashboard");      
-            }      
+            }     
         } catch (error) {
             console.log("error:", error)      
         }
